@@ -1,5 +1,7 @@
 ### FUNCTION TO SUMMARIZE DESCRIPTIVE STATISTICS OF A DATA FRAME --------------- 
 summarize_descriptives <- function(df) {
+  if (nrow(df) < 10) {
+    stop("data is too short")}
   descriptives <- data.frame()
   for (col_name in names(df)) {
     variable <- df[[col_name]]
