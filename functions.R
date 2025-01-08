@@ -15,7 +15,7 @@ summarize_descriptives <- function(df, subject_start, subject_end) {
   
   for (col_name in names(filtered_data)) {
     variable <- filtered_data[[col_name]]
-  
+    
     # Descriptive statistics for continuous variables
     if (class(variable) %in% c("numeric", "integer")) {
       descriptives <- rbind(descriptives, data.frame(
@@ -27,8 +27,8 @@ summarize_descriptives <- function(df, subject_start, subject_end) {
         sd       = sd(variable, na.rm = TRUE),
         levels   = "-",
         count    = "-"))
-      }
-  
+    }
+    
     # Descriptive statistics for categorical variables
     else if (class(variable) %in% c("factor", "character")) {
       levels_count <- data.frame(table(variable, useNA = "ifany"))
@@ -41,8 +41,8 @@ summarize_descriptives <- function(df, subject_start, subject_end) {
         sd       = "-",
         levels   = paste(levels_count$variable, collapse = ", "),
         count    = paste(levels_count$Freq, collapse = ", ")))
-      }
     }
+  }
   return(descriptives)
 }
 
